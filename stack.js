@@ -1,3 +1,8 @@
+/** Make a Stack class. It should include methods for pushing, popping, peeking, and checking if the stack is empty.
+ * 
+ * Make it throw an error if you try to pop from an empty stack.
+ */
+
 /** Node: node for a stack. */
 
 class Node {
@@ -20,26 +25,55 @@ class Stack {
   /** push(val): add new value to end of the stack. Returns undefined. */
 
   push(val) {
+    const node = new Node(val);
+    const temp = this.first;
+    this.first = node;
 
+    // stack is empty
+    if (this.size === 0) {
+      this.first = node;
+      this.last = node;
+    // non-empty stack
+    } else {
+      this.first.next = temp;
+    }
+
+    this.size += 1;
   }
 
   /** pop(): remove the node from the top of the stack
    * and return its value. Should throw an error if the stack is empty. */
 
   pop() {
+    // stack is empty
+    if (this.size === 0) {
+      throw new Error("Cannot pop from an empty stack");
+    }
+  
+    const node = this.first;
+    const aft = this.first.next;
+    console.log("AFT: ", aft);
 
+    // stack contains only one item
+    if (this.size === 1) {
+      this.last = null;
+    }
+
+    this.first = aft;
+    this.size -= 1;
+    return node.val;
   }
 
   /** peek(): return the value of the first node in the stack. */
 
   peek() {
-
+    return this.first.val;
   }
 
   /** isEmpty(): return true if the stack is empty, otherwise false */
 
   isEmpty() {
-
+    return this.size === 0;
   }
 }
 
