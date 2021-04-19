@@ -61,19 +61,18 @@ class Queue {
     this.first = aft;
     this.size -= 1;
     return node.val;
-
   }
 
   /** peek(): return the value of the first node in the queue. */
 
   peek() {
-
+    return this.first.val;
   }
 
   /** isEmpty(): return true if the queue is empty, otherwise false */
 
   isEmpty() {
-
+    return this.size === 0;
   }
 }
 
